@@ -13,5 +13,5 @@ const AuthorSchema = new Schema(
  
 //the model = (name, schema) -> collection
 //'Book' is how it will be stored in the db and how we will reference it
-const AuthorModel = model('author', AuthorSchema);
+const AuthorModel = model('Author', AuthorSchema);
 module.exports = AuthorModel;

@@ -1,8 +1,8 @@
 const models = require('../models')
 
-const postBook = (req, res)=>{
+const postBook = async (req, res)=>{
     const {name, isbn, author} = req.body;
-    const newBook = new models.author({
+    const newBook = new models.book({
         name,
         isbn,
         author
@@ -11,7 +11,7 @@ const postBook = (req, res)=>{
     res.json(newBook)
 }
 
-const getBook = (req, res)=>{
+const getBook = async (req, res)=>{
     const {id} = req.params;
     try{
       const book = await models.book.findById(id);
@@ -21,7 +21,7 @@ const getBook = (req, res)=>{
     }
 }
 
-const getAll = (req, res)=>{
+const getAll = async (req, res)=>{
     try{
         const books = await models.book.find();
         return res.json(books)  

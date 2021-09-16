@@ -4,7 +4,10 @@ const BookSchema = new Schema(
     {
     name: String,
     isbn: String,
-    author: String,
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: 'Author'
+    }
    },
    {
     versionKey: false,
@@ -12,5 +15,5 @@ const BookSchema = new Schema(
    }
     );
  
-const BookModel = model('book', BookSchema);
+const BookModel = model('Book', BookSchema);
 module.exports = BookModel;
