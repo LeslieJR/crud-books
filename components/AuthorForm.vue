@@ -12,7 +12,7 @@
           <v-card-text>
             <v-text-field solo label="First name" clearable v-model="first_name"></v-text-field>
             <v-text-field solo label="Last name" clearable v-model="last_name"></v-text-field>
-            <v-btn block class="blue">Create</v-btn>
+            <v-btn block class="primary">Create</v-btn>
           </v-card-text>
         </v-card>
       </v-col>
