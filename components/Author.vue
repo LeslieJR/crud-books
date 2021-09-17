@@ -2,7 +2,8 @@
   <v-card class="shadow bg-body rounded mb-4">
     <v-row>
       <v-col cols="8">
-        <v-card-title>{{ book.name }}</v-card-title>
+        <v-card-text>{{ author.first_name }}</v-card-text>
+        <v-card-text>{{ author.last_name }}</v-card-text>
       </v-col>
       <v-col cols="4">
         <v-card-actions>
@@ -21,7 +22,7 @@
 <script>
 export default {
   props: {
-    book: {
+    author: {
       type: Object,
       required: true,
     },

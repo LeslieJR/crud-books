@@ -1,12 +1,15 @@
 <template>
   <v-app>
-    <nuxt-link to="/new">Create New Book</nuxt-link>
-    <Nuxt />
+    <v-container>
+      <v-row>
+        <v-col>
+          <Nuxt />
+        </v-col>
+      </v-row>
+    </v-container>
   </v-app>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>

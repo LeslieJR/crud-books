@@ -8,11 +8,10 @@
     <v-row>
       <v-col>
         <v-card class="mx-auto" max-width="450">
-          <v-card-title>BOOK FORM</v-card-title>
+          <v-card-title>AUTHOR FORM</v-card-title>
           <v-card-text>
-            <v-text-field solo label="Book name" clearable v-model="name"></v-text-field>
-            <v-text-field solo label="ISBN" clearable v-model="isbn"></v-text-field>
-            <v-text-field solo label="Author" clearable v-model="author"></v-text-field>
+            <v-text-field solo label="First name" clearable v-model="first_name"></v-text-field>
+            <v-text-field solo label="Last name" clearable v-model="last_name"></v-text-field>
             <v-btn block class="blue">Create</v-btn>
           </v-card-text>
         </v-card>
@@ -25,9 +24,8 @@
 export default {
     data(){
         return{
-            name:"",
-            isbn:"",
-            author:""
+            first_name:"",
+            last_name:"",
         }
     }
 };

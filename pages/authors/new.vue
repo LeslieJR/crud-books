@@ -1,3 +1,3 @@
 <template>
-  <BookForm />
+    <AuthorForm />
 </template>
