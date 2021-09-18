@@ -19,10 +19,10 @@ const postBook = async (req, res)=>{
 }
 
 const getBook = async (req, res)=>{
-    const {id} = req.params;
     try{
-      const book = await models.book.findById(id).populate('author');
-      return res.status(201).json(book)  
+        const {id} = req.params;
+        const book = await models.book.findById(id).populate('author');
+        return res.status(201).json(book)  
     }catch(_){
         return res.status(409).json({error:'Book was not found'})
     }
@@ -43,7 +43,7 @@ const updateBook = async (req,res) =>{
         const {name, isbn, author} = req.body;
     // to update one book -> updateOne({_id:id},{$set: {name,isbn, author}}) -> this does not return the updated object
     // to update and return an object: findOneAndUpdate({_id:id},{$set:{name,isbn, author}}, {new:true})
-       const book = await models.book.findOneAndUpdate(
+        const book = await models.book.findOneAndUpdate(
         {_id:id},
         {$set:{name, isbn, author}},
         {new: true}

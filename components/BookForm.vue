@@ -71,12 +71,10 @@ export default {
       const hostname = "http://localhost:4000/api/books";
       const response = await fetch(hostname + `/book/${this.$route.params.id}`);
       const book = await response.json();
-      console.log({ book });
       this.name = book.name;
       this.isbn = book.isbn;
       this.selected = book.author._id;
       this.author = this.selected;
-      console.log(this.author);
     }
   },
   methods: {
@@ -99,55 +97,50 @@ export default {
       this.author = obj;
     },
     async submitData() {
-      
-        const hostname = "http://localhost:4000/api/books";
-        const body = {
-          name: this.name,
-          isbn: this.isbn,
-          author: this.author,
-        };
-        console.log({ body });
-        try {
-        //check if the fields are populated
-        if (body.name && body.isbn && body.author) {
-          
-          //to update an existing book:
-          if (this.isUpdate) {
-            const res = await fetch(
-              hostname + `/book/update/${this.$route.params.id}`,
-              {
-                method: "PUT",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify(body),
-              }
-            );
-            const data = await res.json();
-            console.log({ data });
-            if (data.error) {
-              alert(data.error);
-            } else {
-              console.log({ data });
-              this.$router.push("/");
-            }
-            //to create a new book
-          } else {
-            const res = await fetch(hostname + "/book", {
-              method: "POST",
+      const hostname = "http://localhost:4000/api/books";
+      const body = {
+        name: this.name,
+        isbn: this.isbn,
+        author: this.author,
+      };
+      console.log({ body });
+      try {
+        //to update an existing book:
+        if (this.isUpdate) {
+          const res = await fetch(
+            hostname + `/book/update/${this.$route.params.id}`,
+            {
+              method: "PUT",
               headers: {
                 "Content-Type": "application/json",
               },
               body: JSON.stringify(body),
-            });
-            const data = await res.json();
-            console.log({ data });
-            if (data.error) {
-              alert(data.error);
-            } else {
-              console.log({ data });
-              this.$router.push("/");
             }
+          );
+          const data = await res.json();
+          console.log({ data });
+          if (data.error) {
+            alert(data.error);
+          } else {
+            console.log({ data });
+            this.$router.push("/");
+          }
+          //to create a new book
+        } else {
+          const res = await fetch(hostname + "/book", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(body),
+          });
+          const data = await res.json();
+          console.log({ data });
+          if (data.error) {
+            alert(data.error);
+          } else {
+            console.log({ data });
+            this.$router.push("/");
           }
         }
       } catch (_) {

@@ -10,7 +10,7 @@
             <nuxt-link class=" white--text text-decoration-none" :to="`/books/${book._id}`">See Details</nuxt-link>
           </v-btn>
           <v-btn class="teal">
-            <nuxt-link class="white--text" :to="`/books/${book._id}/edit`">Update</nuxt-link>
+            <nuxt-link class="white--text text-decoration-none" :to="`/books/${book._id}/edit`">Update</nuxt-link>
             
           </v-btn>
         </v-card-actions>
