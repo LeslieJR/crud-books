@@ -10,9 +10,10 @@ server.set('port', 4000);
 server.listen(server.get('port'), ()=>{
     console.log('listening to port number: ', server.get('port'));
 })
+
+//Middlewares
 server.use(express.json()); 
 server.use(cors());
-//Middlewares
 
 //Routes
 server.use('/api/books', routes.books);

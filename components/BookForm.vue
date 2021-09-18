@@ -2,13 +2,17 @@
   <v-container>
     <v-row class="mt-4">
       <v-col>
-        <nuxt-link to="/">All Books</nuxt-link>
+        <nuxt-link class="blue--text text-decoration-none" to="/">
+          <v-icon class="blue--text"> mdi-arrow-left </v-icon>Back
+        </nuxt-link>
       </v-col>
     </v-row>
     <v-row>
       <v-col>
         <v-card class="mx-auto" max-width="450">
-          <v-card-title>BOOK FORM</v-card-title>
+          <v-card-title>
+            {{ isUpdate ? "UPDATE" : "CREATE NEW" }} BOOK</v-card-title
+          >
           <v-card-text>
             <v-text-field
               solo
@@ -22,15 +26,20 @@
               clearable
               v-model="isbn"
             ></v-text-field>
-            <v-select 
-              v-model="author"
-              :authors="authors"
+            <v-select
+              @change="onChange"
+              :items="authors"
+              item-text="fullname"
+              item-value="_id"
               label="Select author"
+              v-model="selected"
               dense
               solo
             ></v-select>
 
-            <v-btn block class="primary" @click="saveBook">Create</v-btn>
+            <v-btn block class="primary" @click="submitData">
+              {{ isUpdate ? "UPDATE" : "CREATE" }}</v-btn
+            >
           </v-card-text>
         </v-card>
       </v-col>
@@ -42,39 +51,106 @@
 export default {
   data() {
     return {
-      authors: "",
+      authors: [],
       name: "",
       isbn: "",
       author: "",
+      selected: "",
     };
   },
-  
+  props: {
+    isUpdate: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  async created() {
+    await this.getAllAuthors();
+    //to get the book to update
+    if (this.isUpdate) {
+      const hostname = "http://localhost:4000/api/books";
+      const response = await fetch(hostname + `/book/${this.$route.params.id}`);
+      const book = await response.json();
+      console.log({ book });
+      this.name = book.name;
+      this.isbn = book.isbn;
+      this.selected = book.author._id;
+      this.author = this.selected;
+      console.log(this.author);
+      console.log(this.selected);
+    }
+  },
   methods: {
     async getAllAuthors() {
       const hostname = "http://localhost:4000/api/authors";
       const response = await fetch(hostname + "/all");
       const authors = await response.json();
-      this.authors = authors;
-      console.log({ authors });
+      const fullNames = [];
+      for (var i = 0; i < authors.length; i++) {
+        const authorObj = {
+          fullname: authors[i].first_name + " " + authors[i].last_name,
+          _id: authors[i]._id,
+        };
+        fullNames.push(authorObj);
+      }
+      this.authors = fullNames;
     },
-    async saveBook() {
-      const hostname = "http://localhost:4000/api/books";
-      const data = {
-        name: this.name,
-        isbn: this.isbn,
-        author: this.author,
-      };
-
-      const res = await fetch(hostname + "/book", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-      const final = await res.json();
-      console.log(final);
-      return final;
+    onChange(obj) {
+      this.author = obj;
+    },
+    async submitData() {
+      try {
+        const hostname = "http://localhost:4000/api/books";
+        const body = {
+          name: this.name,
+          isbn: this.isbn,
+          author: this.author,
+        };
+        console.log({ body });
+        if (this.name && this.isbn && this.author) {
+          //to create a new book:
+          if (!this.isUpdate) {
+            const res = await fetch(hostname + "/book", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(body),
+            });
+            const data = await res.json();
+            console.log({ data });
+            if (data.error) {
+              alert(data.error);
+            } else {
+              console.log({ data });
+              this.$router.push("/");
+            }
+            //to update a book
+          } else {
+            console.log(this.$route.params.id);
+            const res = await fetch(
+              hostname + `/book/update/${this.$route.params.id}`,
+              {
+                method: "PUT",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(body),
+              }
+            );
+            const data = await res.json();
+            console.log({ data });
+            if (data.error) {
+              alert(data.error);
+            } else {
+              console.log({ data });
+              this.$router.push("/");
+            }
+          }
+        }
+      } catch (_) {
+        alert("There was an error while submitting");
+      }
     },
   },
 };

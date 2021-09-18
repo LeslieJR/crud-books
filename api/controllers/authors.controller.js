@@ -1,31 +1,38 @@
 const models = require('../models')
 
 const postAuthor = async (req, res)=>{
-    const {first_name, last_name} = req.body;
-    const newAuthor = new models.author({
-        first_name,
-        last_name
-    })
-    await newAuthor.save(); 
-    res.json(newAuthor)
+    try{
+        const {first_name, last_name} = req.body;
+        if(!first_name || !last_name){
+            return res.status(409).json({error:'First name or Last name missing '})
+        }
+        const newAuthor = new models.author({
+            first_name,
+            last_name
+        })
+        await newAuthor.save(); 
+        return res.status(201).json(newAuthor)
+    }catch(_){
+        return res.status(409).json({error: 'Error while creating the author'})
+    }
 }
 
 const getAuthor = async (req, res)=>{
     const {id} = req.params;
     try{
       const author = await models.author.findById(id);
-      return res.json(author)  
-    }catch{
-        return res.json({message:"There was an error."})
+      return res.status(201).json(author)  
+    }catch(_){
+        return res.status(409).json({error:'Author was not found'})
     }
 }
 
 const getAll = async (req, res)=>{
     try{
       const authors = await models.author.find();
-      return res.json(authors)  
+      return res.status(201).json(authors)  
     }catch{
-        return res.json({message:"There was an error."})
+        return res.status(409).json({error:'Authors not found'})
     }
 }
 

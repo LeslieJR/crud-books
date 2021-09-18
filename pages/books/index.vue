@@ -1,11 +1,20 @@
 <template>
   <div>
     <v-row class="mt-4">
-      <v-col>
-        <nuxt-link to="/authors/new">Create Author</nuxt-link>
+      <v-col cols="3">
+        <v-btn class="green lighten-1">
+          <nuxt-link class=" white--text text-decoration-none" to="/authors/new">Create Author</nuxt-link>
+        </v-btn>
       </v-col>
+      <v-col cols="3">
+        <v-btn class="green lighten-1">
+          <nuxt-link class=" white--text text-decoration-none" to="/new">Create Book</nuxt-link>
+        </v-btn>
+      </v-col>
+    </v-row>
+    <v-row>
       <v-col>
-        <nuxt-link to="/new">Create Book</nuxt-link>
+        <h1 class="text-center">Books</h1>
       </v-col>
     </v-row>
     <v-row v-for="(book, index) in books" :key="index">
@@ -23,8 +32,8 @@ export default {
       books: [],
     };
   },
-  mounted() {
-    this.getAllBooks();
+  async created() {
+    await this.getAllBooks();
   },
   methods: {
     async getAllBooks() {
@@ -32,7 +41,6 @@ export default {
       const response = await fetch(hostname + "/all");
       const books = await response.json();
       this.books = books;
-      console.log({ books });
     },
   },
 };

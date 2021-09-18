@@ -7,9 +7,6 @@
       </v-col>
       <v-col cols="4">
         <v-card-actions>
-          <v-btn class="primary">
-            <a class="white--text">See Details</a>
-          </v-btn>
           <v-btn class="teal">
             <a class="white--text">Update</a>
           </v-btn>

@@ -2,12 +2,14 @@
   <v-container class="mt-5 mb-5">
     <v-row>
       <v-col>
-        <nuxt-link to="/books">All books</nuxt-link>
+        <nuxt-link class="blue--text text-decoration-none" to="/">
+          <v-icon class="blue--text"> mdi-arrow-left </v-icon>Back
+        </nuxt-link>
       </v-col>
     </v-row>
     <v-row>
       <v-col>
-        <BookDetails :book="book" />
+        <BookDetails v-if="book.author" :book="book" />
       </v-col>
     </v-row>
   </v-container>

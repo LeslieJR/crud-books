@@ -5,7 +5,8 @@
     <v-row>
       <v-col>
         <v-card-title>Title: {{ book.name }}</v-card-title>
-        <v-card-text>ISBN: {{ book.isbn }}</v-card-text>
+        <v-card-text class="pb-0">ISBN: {{ book.isbn }}</v-card-text>
+        <v-card-text>Author: {{book.author.first_name}} {{book.author.last_name}}</v-card-text>
       </v-col>
     </v-row>
   </v-card>
