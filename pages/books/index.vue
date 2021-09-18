@@ -13,12 +13,12 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col>
+      <v-col class="blue-grey lighten-5">
         <h1 class="text-center">Books</h1>
       </v-col>
     </v-row>
     <v-row v-for="(book, index) in books" :key="index">
-      <v-col>
+      <v-col class="blue-grey lighten-5">
         <Book :book="book" />
       </v-col>
     </v-row>
@@ -36,6 +36,7 @@ export default {
     await this.getAllBooks();
   },
   methods: {
+    //to get all existing books
     async getAllBooks() {
       const hostname = "http://localhost:4000/api/books";
       const response = await fetch(hostname + "/all");

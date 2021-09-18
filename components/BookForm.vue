@@ -77,10 +77,10 @@ export default {
       this.selected = book.author._id;
       this.author = this.selected;
       console.log(this.author);
-      console.log(this.selected);
     }
   },
   methods: {
+    //to get the list of authors to populate the select options
     async getAllAuthors() {
       const hostname = "http://localhost:4000/api/authors";
       const response = await fetch(hostname + "/all");
@@ -99,7 +99,7 @@ export default {
       this.author = obj;
     },
     async submitData() {
-      try {
+      
         const hostname = "http://localhost:4000/api/books";
         const body = {
           name: this.name,
@@ -107,27 +107,12 @@ export default {
           author: this.author,
         };
         console.log({ body });
-        if (this.name && this.isbn && this.author) {
-          //to create a new book:
-          if (!this.isUpdate) {
-            const res = await fetch(hostname + "/book", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(body),
-            });
-            const data = await res.json();
-            console.log({ data });
-            if (data.error) {
-              alert(data.error);
-            } else {
-              console.log({ data });
-              this.$router.push("/");
-            }
-            //to update a book
-          } else {
-            console.log(this.$route.params.id);
+        try {
+        //check if the fields are populated
+        if (body.name && body.isbn && body.author) {
+          
+          //to update an existing book:
+          if (this.isUpdate) {
             const res = await fetch(
               hostname + `/book/update/${this.$route.params.id}`,
               {
@@ -138,6 +123,23 @@ export default {
                 body: JSON.stringify(body),
               }
             );
+            const data = await res.json();
+            console.log({ data });
+            if (data.error) {
+              alert(data.error);
+            } else {
+              console.log({ data });
+              this.$router.push("/");
+            }
+            //to create a new book
+          } else {
+            const res = await fetch(hostname + "/book", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(body),
+            });
             const data = await res.json();
             console.log({ data });
             if (data.error) {

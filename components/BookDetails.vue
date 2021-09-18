@@ -1,6 +1,7 @@
 <template>
-
-  <v-card class="shadow bg-body rounded mb-4
+  <div>
+    <h1 class="text-center mb-4">Book Details</h1>
+    <v-card class="shadow bg-body rounded mb-4
     mx-auto" max-width="400">
     <v-row>
       <v-col>
@@ -10,6 +11,8 @@
       </v-col>
     </v-row>
   </v-card>
+  </div>
+  
 </template>
 
 <script>

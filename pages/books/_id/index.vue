@@ -31,6 +31,7 @@ export default {
     await this.getBook();
   },
   methods: {
+    //to get the book
     async getBook() {
       const hostname = "http://localhost:4000/api/books";
       const res = await fetch(hostname + "/book/" + this.id);
