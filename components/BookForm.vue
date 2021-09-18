@@ -11,8 +11,8 @@
       <v-col>
         <v-card class="mx-auto" max-width="450">
           <v-card-title>
-            {{ isUpdate ? "UPDATE" : "CREATE NEW" }} BOOK</v-card-title
-          >
+            {{ isUpdate ? "UPDATE" : "CREATE NEW" }} BOOK
+          </v-card-title>
           <v-card-text>
             <v-text-field
               solo
@@ -97,14 +97,14 @@ export default {
       this.author = obj;
     },
     async submitData() {
-      const hostname = "http://localhost:4000/api/books";
-      const body = {
-        name: this.name,
-        isbn: this.isbn,
-        author: this.author,
-      };
-      console.log({ body });
       try {
+        const hostname = "http://localhost:4000/api/books";
+        const body = {
+          name: this.name,
+          isbn: this.isbn,
+          author: this.author,
+        };
+
         //to update an existing book:
         if (this.isUpdate) {
           const res = await fetch(
@@ -118,11 +118,10 @@ export default {
             }
           );
           const data = await res.json();
-          console.log({ data });
+
           if (data.error) {
             alert(data.error);
           } else {
-            console.log({ data });
             this.$router.push("/");
           }
           //to create a new book
@@ -135,11 +134,10 @@ export default {
             body: JSON.stringify(body),
           });
           const data = await res.json();
-          console.log({ data });
+
           if (data.error) {
             alert(data.error);
           } else {
-            console.log({ data });
             this.$router.push("/");
           }
         }

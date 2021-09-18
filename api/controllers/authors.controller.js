@@ -18,13 +18,29 @@ const postAuthor = async (req, res)=>{
 }
 
 const getAuthor = async (req, res)=>{
-    const {id} = req.params;
     try{
-      const author = await models.author.findById(id);
-      return res.status(201).json(author)  
+        const {id} = req.params;
+        const author = await models.author.findById(id);
+        return res.status(201).json(author)  
     }catch(_){
         return res.status(409).json({error:'Author was not found'})
     }
+}
+
+const updateAuthor = async (req, res) => {
+    try{
+        const {id} = req.params;
+        const {first_name, last_name} = req.body;
+        const author = await models.author.findOneAndUpdate(
+        {_id:id},
+        {$set:{first_name, last_name}},
+        {new: true}
+        )
+        return res.status(201).json(author)  
+    }catch(_){
+        return res.status(409).json({error:'There was an error updating the author'})
+    }
+
 }
 
 const getAll = async (req, res)=>{
@@ -36,8 +52,11 @@ const getAll = async (req, res)=>{
     }
 }
 
+
+
 module.exports = {
     postAuthor,
     getAuthor,
+    updateAuthor,
     getAll
 }

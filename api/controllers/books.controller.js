@@ -37,12 +37,21 @@ const getAll = async (req, res)=>{
       }
 }
 
+//to get all the books of one author
+const getAuthorBooks = async (req, res) => {
+    try{
+        const {id} = req.params
+        const books = await models.book.find({author: id})
+        return res.status(201).json(books)
+    }catch(_){
+        return res.status(409).json({error:'This author does not have books'})
+    }
+}
+
 const updateBook = async (req,res) =>{
     try{
         const {id} = req.params;
         const {name, isbn, author} = req.body;
-    // to update one book -> updateOne({_id:id},{$set: {name,isbn, author}}) -> this does not return the updated object
-    // to update and return an object: findOneAndUpdate({_id:id},{$set:{name,isbn, author}}, {new:true})
         const book = await models.book.findOneAndUpdate(
         {_id:id},
         {$set:{name, isbn, author}},
@@ -59,5 +68,6 @@ module.exports = {
     postBook,
     getBook,
     getAll,
+    getAuthorBooks,
     updateBook
 }

@@ -22,6 +22,13 @@
         <Book :book="book" />
       </v-col>
     </v-row>
+    <v-row>
+      <v-col>
+        <v-btn>
+          <nuxt-link class="text-decoration-none" to="/authors">See All Authors</nuxt-link>
+        </v-btn>
+      </v-col>
+    </v-row>
   </div>
 </template>
 

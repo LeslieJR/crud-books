@@ -7,8 +7,12 @@
       </v-col>
       <v-col cols="4">
         <v-card-actions>
+          <v-btn class="primary">
+            <nuxt-link class=" white--text text-decoration-none" :to="`/authors/${author._id}`">See Details</nuxt-link>
+          </v-btn>
           <v-btn class="teal">
-            <a class="white--text">Update</a>
+            <nuxt-link class="white--text text-decoration-none" :to="`/authors/${author._id}/edit`">Update</nuxt-link>
+            
           </v-btn>
         </v-card-actions>
       </v-col>

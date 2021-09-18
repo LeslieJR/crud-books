@@ -1,5 +1,12 @@
 <template>
   <div class="mt-4">
+    <v-row>
+      <v-col>
+        <nuxt-link class="blue--text text-decoration-none" to="/">
+          <v-icon class="blue--text"> mdi-arrow-left </v-icon>Back
+        </nuxt-link>
+      </v-col>
+    </v-row>
     <v-row v-for="(author, index) in authors" :key="index">
       <v-col>
         <Author :author="author" />

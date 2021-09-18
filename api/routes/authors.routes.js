@@ -6,6 +6,8 @@ router.post('/author', controllers.authorController.postAuthor)
 
 router.get('/author/:id',  controllers.authorController.getAuthor)
 
+router.put('/author/update/:id', controllers.authorController.updateAuthor)
+
 router.get('/all',  controllers.authorController.getAll)
 
 
