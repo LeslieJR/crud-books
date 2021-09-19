@@ -3,12 +3,12 @@
     <v-row class="mt-4">
       <v-col cols="3">
         <v-btn href="/authors/new">
-          Create Author
+          1. Create Author
         </v-btn>
       </v-col>
       <v-col cols="3">
         <v-btn href="/new">
-          Create Book
+          2. Create Book
         </v-btn>
       </v-col>
     </v-row>
@@ -17,11 +17,20 @@
         <h1 class="text-center">Books</h1>
       </v-col>
     </v-row>
-    <v-row v-for="(book, index) in books" :key="index">
-      <v-col>
-        <Book :book="book" />
-      </v-col>
-    </v-row>
+    <div v-if="books.length > 0">
+      <v-row v-for="(book, index) in books" :key="index">
+        <v-col>
+          <Book :book="book" />
+        </v-col>
+      </v-row>
+    </div>
+    <div v-else>
+      <v-row>
+        <v-col>
+          <h2 class="text-center">There are no books to display</h2>
+        </v-col>
+      </v-row>
+    </div>
     <v-row>
       <v-col>
         <v-btn href="/authors">

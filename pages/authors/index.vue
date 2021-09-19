@@ -7,11 +7,25 @@
         </nuxt-link>
       </v-col>
     </v-row>
-    <v-row v-for="(author, index) in authors" :key="index">
+    <v-row>
       <v-col>
-        <Author :author="author" />
+        <h1 class="text-center">Authors</h1>
       </v-col>
     </v-row>
+    <div v-if="authors.length > 0">
+      <v-row v-for="(author, index) in authors" :key="index">
+        <v-col>
+          <Author :author="author" />
+        </v-col>
+      </v-row>
+    </div>
+    <div v-else>
+      <v-row>
+        <v-col>
+          <h2 class="text-center">There are no authors to display</h2>
+        </v-col>
+      </v-row>
+    </div>
   </div>
 </template>
 
