@@ -2,8 +2,8 @@
   <v-container class="mt-5 mb-5">
     <v-row>
       <v-col>
-        <nuxt-link class="blue--text text-decoration-none" to="/authors">
-          <v-icon class="blue--text"> mdi-arrow-left </v-icon>Back
+        <nuxt-link class="white--text text-decoration-none" to="/authors">
+          <v-icon class="white--text"> mdi-arrow-left </v-icon>Back
         </nuxt-link>
       </v-col>
     </v-row>

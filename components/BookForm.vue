@@ -2,8 +2,8 @@
   <v-container>
     <v-row class="mt-4">
       <v-col>
-        <nuxt-link class="blue--text text-decoration-none" to="/">
-          <v-icon class="blue--text"> mdi-arrow-left </v-icon>Back
+        <nuxt-link class="white--text text-decoration-none" to="/">
+          <v-icon class="white--text"> mdi-arrow-left </v-icon>Back
         </nuxt-link>
       </v-col>
     </v-row>
@@ -37,7 +37,7 @@
               solo
             ></v-select>
 
-            <v-btn block class="primary" @click="submitData">
+            <v-btn block class="cyan darken-1" @click="submitData">
               {{ isUpdate ? "UPDATE" : "CREATE" }}</v-btn
             >
           </v-card-text>

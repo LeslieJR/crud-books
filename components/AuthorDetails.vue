@@ -7,8 +7,8 @@
           <v-card-title
             >Name: {{ author.first_name }} {{ author.last_name }}</v-card-title
           >
-          <div class="pb-0" v-if="books.length>0">
-            <v-card-text
+          <div v-if="books.length>0">
+            <v-card-text class="pt-0"
               >Books
               <div v-for="(book, index) in books" :key="index">
                 <p>{{ book.name }}</p>

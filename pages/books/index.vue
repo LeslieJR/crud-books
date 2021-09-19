@@ -2,30 +2,30 @@
   <div>
     <v-row class="mt-4">
       <v-col cols="3">
-        <v-btn class="green lighten-1">
-          <nuxt-link class=" white--text text-decoration-none" to="/authors/new">Create Author</nuxt-link>
+        <v-btn href="/authors/new">
+          Create Author
         </v-btn>
       </v-col>
       <v-col cols="3">
-        <v-btn class="green lighten-1">
-          <nuxt-link class=" white--text text-decoration-none" to="/new">Create Book</nuxt-link>
+        <v-btn href="/new">
+          Create Book
         </v-btn>
       </v-col>
     </v-row>
     <v-row>
-      <v-col class="blue-grey lighten-5">
+      <v-col>
         <h1 class="text-center">Books</h1>
       </v-col>
     </v-row>
     <v-row v-for="(book, index) in books" :key="index">
-      <v-col class="blue-grey lighten-5">
+      <v-col>
         <Book :book="book" />
       </v-col>
     </v-row>
     <v-row>
       <v-col>
-        <v-btn>
-          <nuxt-link class="text-decoration-none" to="/authors">See All Authors</nuxt-link>
+        <v-btn href="/authors">
+          See All Authors
         </v-btn>
       </v-col>
     </v-row>
