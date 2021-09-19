@@ -17,7 +17,7 @@
         <h1 class="text-center">Books</h1>
       </v-col>
     </v-row>
-    <div v-if="books.length > 0">
+    <div v-if="books">
       <v-row v-for="(book, index) in books" :key="index">
         <v-col>
           <Book :book="book" />
@@ -48,7 +48,7 @@ export default {
       books: [],
     };
   },
-  async created() {
+  async mounted() {
     await this.getAllBooks();
   },
   methods: {
