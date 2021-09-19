@@ -17,7 +17,7 @@
         <h1 class="text-center">Books</h1>
       </v-col>
     </v-row>
-    <div v-if="books">
+    <div v-if="books.length>0">
       <v-row v-for="(book, index) in books" :key="index">
         <v-col>
           <Book :book="book" />

@@ -12,7 +12,7 @@
         <h1 class="text-center">Authors</h1>
       </v-col>
     </v-row>
-    <div v-if="authors">
+    <div v-if="authors.length>0">
       <v-row v-for="(author, index) in authors" :key="index">
         <v-col>
           <Author :author="author" />
