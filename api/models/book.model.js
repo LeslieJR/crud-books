@@ -4,17 +4,17 @@ const BookSchema = new Schema(
     {
     name: {
         type:String,
-        require:true
+        required:true
     },
     isbn: {
         type:String,
         unique: true,
-        require:true
+        required:true
     },
     author: {
         type: Schema.Types.ObjectId,
         ref: 'Author',
-        require:true
+        required:true
     }
    },
    {
