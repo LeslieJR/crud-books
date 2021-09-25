@@ -7,7 +7,7 @@
         </v-btn>
       </v-col>
       <v-col cols="3">
-        <v-btn href="/new">
+        <v-btn href="/books/new">
           2. Create Book
         </v-btn>
       </v-col>
