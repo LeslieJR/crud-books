@@ -39,7 +39,7 @@ export default {
       const res = await fetch(hostname + "/author/" + this.id);
       const author = await res.json();
       this.author = author;
-      console.log(author)
+     
     },
     //to get the book of this author
     async getBooks(){
@@ -47,7 +47,7 @@ export default {
         const res = await fetch(hostname);
         const books = await res.json();
         this.books = books;
-        console.log({books})
+      
     }
   },
 };

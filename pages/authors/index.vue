@@ -45,7 +45,6 @@ export default {
       const response = await fetch(hostname + "/all");
       const authors = await response.json();
       this.authors = authors;
-      console.log({ authors });
     },
   },
 };
