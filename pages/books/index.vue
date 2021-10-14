@@ -54,7 +54,7 @@ export default {
   methods: {
     //to get all existing books
     async getAllBooks() {
-      const hostname = "http://localhost:4000/api/books";
+      const hostname = "https://crud-books-server.herokuapp.com/api/books";
       const response = await fetch(hostname + "/all");
       const books = await response.json();
       this.books = books;

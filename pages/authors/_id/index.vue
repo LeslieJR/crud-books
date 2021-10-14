@@ -35,7 +35,7 @@ export default {
   methods: {
     //to get the author
     async getAuthor() {
-      const hostname = "http://localhost:4000/api/authors";
+      const hostname = "https://crud-books-server.herokuapp.com/api/authors";
       const res = await fetch(hostname + "/author/" + this.id);
       const author = await res.json();
       this.author = author;
@@ -43,7 +43,7 @@ export default {
     },
     //to get the book of this author
     async getBooks(){
-        const hostname = `http://localhost:4000/api/books/${this.id}/allBooks`;
+        const hostname = `https://crud-books-server.herokuapp.com/api/books/${this.id}/allBooks`;
         const res = await fetch(hostname);
         const books = await res.json();
         this.books = books;

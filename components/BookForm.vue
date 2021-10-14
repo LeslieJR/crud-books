@@ -68,7 +68,7 @@ export default {
     await this.getAllAuthors();
     //to get the book to update
     if (this.isUpdate) {
-      const hostname = "http://localhost:4000/api/books";
+      const hostname = "https://crud-books-server.herokuapp.com/api/books";
       const response = await fetch(hostname + `/book/${this.$route.params.id}`);
       const book = await response.json();
       this.name = book.name;
@@ -80,7 +80,7 @@ export default {
   methods: {
     //to get the list of authors to populate the select options
     async getAllAuthors() {
-      const hostname = "http://localhost:4000/api/authors";
+      const hostname = "https://crud-books-server.herokuapp.com/api/authors";
       const response = await fetch(hostname + "/all");
       const authors = await response.json();
       const fullNames = [];
@@ -98,7 +98,7 @@ export default {
     },
     async submitData() {
       try {
-        const hostname = "http://localhost:4000/api/books";
+        const hostname = "https://crud-books-server.herokuapp.com/api/books";
         const body = {
           name: this.name,
           isbn: this.isbn,

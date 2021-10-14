@@ -33,7 +33,7 @@ export default {
   methods: {
     //to get the book
     async getBook() {
-      const hostname = "http://localhost:4000/api/books";
+      const hostname = "https://crud-books-server.herokuapp.com/api/books";
       const res = await fetch(hostname + "/book/" + this.id);
       const book = await res.json();
       this.book = book;

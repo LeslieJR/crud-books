@@ -41,7 +41,7 @@ export default {
   },
   methods: {
     async getAllAuthors() {
-      const hostname = "http://localhost:4000/api/authors";
+      const hostname = "https://crud-books-server.herokuapp.com/api/authors";
       const response = await fetch(hostname + "/all");
       const authors = await response.json();
       this.authors = authors;

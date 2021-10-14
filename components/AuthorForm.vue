@@ -51,7 +51,7 @@ export default {
   async created() {
     //to get the author to update
     if (this.isUpdate) {
-      const hostname = "http://localhost:4000/api/authors";
+      const hostname = "https://crud-books-server.herokuapp.com/api/authors";
       const response = await fetch(
         hostname + `/author/${this.$route.params.id}`
       );
@@ -63,7 +63,7 @@ export default {
   methods: {
     async submitData() {
       try {
-        const hostname = "http://localhost:4000/api/authors";
+        const hostname = "https://crud-books-server.herokuapp.com/api/authors";
         const body = {
           first_name: this.first_name,
           last_name: this.last_name,
